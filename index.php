@@ -15,13 +15,13 @@ html, body {
 
 body {
 	background-color: #000000;
-	margin: 0;
+	margin: 0; //设置外边距为0
 	font-family: Helvetica, sans-serif;;
 	overflow: hidden;
 }
 
 a {
-	color: #ffffff;
+	color: #ffffff;          
 }
 
 #info {

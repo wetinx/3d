@@ -2,7 +2,11 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="keywords" content="思维导图">
+<meta name="description" content="脑图">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="page-enter" content="revealtrans(duration=5.0,Transition=8)">
+// meta HTTP-EQUIV="refresh" content="3; url=index1.html" >
 <title>3D-元素周期表</title>
 <style>
 html, body {
@@ -100,6 +104,7 @@ button:active {
 </style>
 </head>
 <body>
+
 <script src="js/three.min.js" ></script>
 <script src="js/tween.min.js" ></script>
 <script src="js/TrackballControls.js" ></script>

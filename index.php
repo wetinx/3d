@@ -6,8 +6,11 @@
 <meta name="description" content="脑图">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="page-enter" content="revealtrans(duration=5.0,Transition=8)">
-// meta HTTP-EQUIV="refresh" content="3; url=index1.html" >
+<!--meta HTTP-EQUIV="refresh" content="3; url=index.php" -->
 <title>3D-元素周期表</title>
+<link rel="Shortcut icon" href="ico/ico3232.ico" />
+<link href="css/demo.css?v1" rel="stylesheet" media="all" />
+
 <style>
 html, body {
 	height: 100%;
@@ -15,13 +18,13 @@ html, body {
 
 body {
 	background-color: #000000;
-	margin: 0; //设置外边距为0
+	margin: 0;
 	font-family: Helvetica, sans-serif;;
 	overflow: hidden;
 }
 
 a {
-	color: #ffffff;          
+	color: #ffffff;
 }
 
 #info {
@@ -103,8 +106,9 @@ button:active {
 }
 </style>
 </head>
-<body>
 
+
+<body>
 <script src="js/three.min.js" ></script>
 <script src="js/tween.min.js" ></script>
 <script src="js/TrackballControls.js" ></script>
@@ -253,10 +257,28 @@ animate();
 
 function init() {
 
-	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000000 );
+//透视相机（THREE.PerspectiveCamera）
+//在Threejs中场景就只有一种，用THREE.Scene来表示，要构件一个场景也很简单，只要new一个对象就可以了-->
+//设置摄像机camera (0) 声明全局的变量（对象）；(1) 设置透视投影的相机；(2) 设置相机的位置坐标；
+//(3) 设置相机的上为「z」轴方向；//(4) 设置视野的中心坐标。
+//1.放大倍数（设置透视投影的相机,默认情况下相机的上方向为Y轴，右方向为X轴，沿着Z轴朝里）
+//2（视野角：fov 纵横比：aspect 3相机离视体积最近的距离：near 4相机离视体积最远的距离：far）
+//camera.position.x = 0;//设置相机的位置x坐标
+//camera.position.y = 50;//设置相机的位置y坐标
+//camera.position.z = 100;//设置相机的位置z坐标
+//camera.up.x = 0;//设置相机的上为「x」轴方向
+// camera.up.y = 1;//设置相机的上为「y」轴方向
+// camera.up.z = 0;//设置相机的上为「z」轴方向
+// camera.lookAt( {x:0, y:0, z:0 } );//设置视野的中心坐标
+
+
 	camera.position.z = 3000;
+	//camera.position.z = 100;//设置相机的位置z坐标
 
 	scene = new THREE.Scene();
+	//场景就是一个三维空间。 用 [Scene] 类声明一个叫 [scene] 的对象
+
 
 	// table
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html>  <!--html的注释语法-->
 <head>
 <meta charset="utf-8">
 <meta name="keywords" content="思维导图">
@@ -8,10 +8,10 @@
 <meta http-equiv="page-enter" content="revealtrans(duration=5.0,Transition=8)">
 <!--meta HTTP-EQUIV="refresh" content="3; url=index.php" -->
 <title>3D-元素周期表</title>
-<link rel="Shortcut icon" href="ico/ico3232.ico" />
+<link rel="Shortcut icon" href="ico/ico3232.ico" />  <!--标题图标地址-->
 <link href="css/demo.css?v1" rel="stylesheet" media="all" />
 
-<style>
+<style>       /* CSS的注释语法是：(/ * ...... * /)*/
 html, body {
 	height: 100%;
 }
@@ -47,16 +47,16 @@ a {
 	font-family: verdana,Tahoma,Arial,Hei,"Microsoft Yahei",SimHei;
 }
 
-.element {
+.element {          /*单一元素框架*/
 	width: 120px;
 	height: 160px;
 	box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
 	border: 1px solid rgba(127,255,255,0.25);
 	text-align: center;
-	cursor: default;
+	cursor: default;  //cursor 光标
 }
 
-.element:hover {
+.element:hover {  //hover盘旋
 	box-shadow: 0px 0px 12px rgba(0,255,255,0.75);
 	border: 1px solid rgba(127,255,255,0.75);
 }
@@ -246,7 +246,7 @@ var table = [
 	"Uuo", "Ununoctium", "(294)", 18, 7
 ];
 
-var camera, scene, renderer;
+var camera, scene, renderer;  //相机，场景，渲染器
 var controls;
 
 var objects = [];
@@ -271,6 +271,7 @@ function init() {
 // camera.up.y = 1;//设置相机的上为「y」轴方向
 // camera.up.z = 0;//设置相机的上为「z」轴方向
 // camera.lookAt( {x:0, y:0, z:0 } );//设置视野的中心坐标
+//http://www.cnblogs.com/shawn-xie/archive/2012/08/16/2642553.html  THREE.PerspectiveCamera透视相机
 
 
 	camera.position.z = 3000;
@@ -280,14 +281,14 @@ function init() {
 	//场景就是一个三维空间。 用 [Scene] 类声明一个叫 [scene] 的对象
 
 
-	// table
+	// table 平面
 
 	for ( var i = 0; i < table.length; i += 5 ) {
 
-		var element = document.createElement( 'div' );
-		element.className = 'element';
+		var element = document.createElement( 'div' );  //element要素
+		element.className = 'element';  //类的名称
 		element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
-
+    //RGBA是代表Red（红色） Green（绿色） Blue（蓝色）和 Alpha透明度/不透明度,ranom随机数（0-1）
 		var number = document.createElement( 'div' );
 		number.className = 'number';
 		number.textContent = (i/5) + 1;
@@ -296,14 +297,14 @@ function init() {
 		var symbol = document.createElement( 'div' );
 		symbol.className = 'symbol';
 		symbol.textContent = table[ i ];
-		element.appendChild( symbol );
+		element.appendChild( symbol ); //appendchild 添加子节点
 
 		var details = document.createElement( 'div' );
 		details.className = 'details';
 		details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
 		element.appendChild( details );
 
-		var object = new THREE.CSS3DObject( element );
+		var object = new THREE.CSS3DObject( element ); //CSS3DRenderer.js(css3模型渲染器)
 		object.position.x = Math.random() * 4000 - 2000;
 		object.position.y = Math.random() * 4000 - 2000;
 		object.position.z = Math.random() * 4000 - 2000;
@@ -321,22 +322,22 @@ function init() {
 
 	}
 
-	// sphere
+	// sphere 球
 
-	var vector = new THREE.Vector3();
+	var vector = new THREE.Vector3();  //vector矢量
 
-	for ( var i = 0, l = objects.length; i < l; i ++ ) {
+	for ( var i = 0, l = objects.length; i < l; i ++ ) {    //物体。长度
 
-		var phi = Math.acos( -1 + ( 2 * i ) / l );
-		var theta = Math.sqrt( l * Math.PI ) * phi;
+		var phi = Math.acos( -1 + ( 2 * i ) / l );  //数学反弦函数
+		var theta = Math.sqrt( l * Math.PI ) * phi;  //math.sqrt数学平方根,math.pi数学圆周率
 
-		var object = new THREE.Object3D();
+		var object = new THREE.Object3D();  //定义一个新的3d物体
 
 		object.position.x = 800 * Math.cos( theta ) * Math.sin( phi );
 		object.position.y = 800 * Math.sin( theta ) * Math.sin( phi );
 		object.position.z = 800 * Math.cos( phi );
 
-		vector.copy( object.position ).multiplyScalar( 2 );
+		vector.copy( object.position ).multiplyScalar( 2 );  //multiplyScalar乘以标量
 
 		object.lookAt( vector );
 
@@ -344,13 +345,13 @@ function init() {
 
 	}
 
-	// helix
+	// helix 螺旋
 
-	var vector = new THREE.Vector3();
+	var vector = new THREE.Vector3();  //vector矢量
 
 	for ( var i = 0, l = objects.length; i < l; i ++ ) {
 
-		var phi = i * 0.175 + Math.PI;
+		var phi = i * 0.175 + Math.PI;  //math.pi数学圆周率
 
 		var object = new THREE.Object3D();
 
@@ -368,7 +369,7 @@ function init() {
 
 	}
 
-	// grid
+	// grid 格子
 
 	for ( var i = 0; i < objects.length; i ++ ) {
 
@@ -384,17 +385,19 @@ function init() {
 
 	//
 
-	renderer = new THREE.CSS3DRenderer();
+	renderer = new THREE.CSS3DRenderer();  //渲染器
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.domElement.style.position = 'absolute';
+	//renderer的domElement元素,表示渲染器中的画布,所有的渲染都是画在domElement上的,
 	document.getElementById( 'container' ).appendChild( renderer.domElement );
-
+  //appendChild表示将这个domElement挂接在body下面
 	//
 
 	controls = new THREE.TrackballControls( camera, renderer.domElement );
-	controls.rotateSpeed = 0.5;
-	controls.minDistance = 500;
-	controls.maxDistance = 6000;
+	//TrackballControls.js(场景控制器?，鼠标控制场景)
+	controls.rotateSpeed = 0.5;    //rotate旋转  鼠标控制
+	controls.minDistance = 5;      //相机离object最近距离
+	controls.maxDistance = 600000;  //相机离object最远距离
 	controls.addEventListener( 'change', render );
 
 	var button = document.getElementById( 'table' );

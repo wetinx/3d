@@ -399,7 +399,10 @@ function init() {
 	controls.minDistance = 5;      //相机离object最近距离
 	controls.maxDistance = 600000;  //相机离object最远距离
 	controls.addEventListener( 'change', render );
+	//addEventListener加入事件监听ender提交change改变
 
+
+	//以下单击table(平面)
 	var button = document.getElementById( 'table' );
 	button.addEventListener( 'click', function ( event ) {
 
@@ -407,6 +410,7 @@ function init() {
 
 	}, false );
 
+	//以下单击sphere(球体)
 	var button = document.getElementById( 'sphere' );
 	button.addEventListener( 'click', function ( event ) {
 
@@ -414,6 +418,7 @@ function init() {
 
 	}, false );
 
+  //以下单击helix(螺旋)
 	var button = document.getElementById( 'helix' );
 	button.addEventListener( 'click', function ( event ) {
 
@@ -421,12 +426,15 @@ function init() {
 
 	}, false );
 
+ //以下单击grid(网格)
 	var button = document.getElementById( 'grid' );
 	button.addEventListener( 'click', function ( event ) {
 
 		transform( targets.grid, 2000 );
 
 	}, false );
+
+
 
 	transform( targets.table, 5000 );
 
@@ -436,9 +444,9 @@ function init() {
 
 }
 
-function transform( targets, duration ) {
+function transform( targets, duration ) {  //duration 持续，期间
 
-	TWEEN.removeAll();
+	TWEEN.removeAll();  //TWEEN两者之间
 
 	for ( var i = 0; i < objects.length; i ++ ) {
 
@@ -447,10 +455,10 @@ function transform( targets, duration ) {
 
 		new TWEEN.Tween( object.position )
 			.to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
-			.easing( TWEEN.Easing.Exponential.InOut )
+			.easing( TWEEN.Easing.Exponential.InOut )  //Exponential指数、幂数
 			.start();
 
-		new TWEEN.Tween( object.rotation )
+		new TWEEN.Tween( object.rotation )  //rotation 旋转
 			.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
 			.easing( TWEEN.Easing.Exponential.InOut )
 			.start();
@@ -459,19 +467,19 @@ function transform( targets, duration ) {
 
 	new TWEEN.Tween( this )
 		.to( {}, duration * 2 )
-		.onUpdate( render )
+		.onUpdate( render ) //render提供
 		.start();
 
 }
 
-function onWindowResize() {
+function onWindowResize() {   //resize调整大水
 
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
+	camera.aspect = window.innerWidth / window.innerHeight;  //aspect方面、宽高比、纵横比
+	camera.updateProjectionMatrix();  //Matrix矩阵
 
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( window.innerWidth, window.innerHeight );  //renderer渲染器
 
-	render();
+	render();  //render提供
 
 }
 
@@ -479,7 +487,7 @@ function animate() {
 
 	requestAnimationFrame( animate );
 
-	TWEEN.update();
+	TWEEN.update();   //TWEEN两者之间
 
 	controls.update();
 

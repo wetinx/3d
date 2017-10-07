@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="keywords" content="思维导图">
 <meta name="description" content="脑图">
+<meta name="robots" content="all" />
+<meta name="author" content="wetin" />
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="page-enter" content="revealtrans(duration=5.0,Transition=8)">
 <!--meta HTTP-EQUIV="refresh" content="3; url=index.php" -->
@@ -485,7 +487,7 @@ function onWindowResize() {   //resize调整大水
 
 function animate() {
 
-	requestAnimationFrame( animate );
+	requestAnimationFrame( animate );  //requestAnimationFrame可以获得最佳的图形性能
 
 	TWEEN.update();   //TWEEN两者之间
 

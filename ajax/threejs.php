@@ -27,6 +27,7 @@
 <body>
 <div id="wrapper1" style="margin:0 auto;position:relative;width:1024px;height:auto;background:#7190E0">
 
+<!--
 <ul id="menu" style="list-style-type:none;margin:0;padding:0;overflow:hidden;">
 
 <style>
@@ -51,28 +52,6 @@ font-weight: bold;
 {
 background-color:#cc0000;
 }
-li.yangshi1{display:true}
-.yangshi1 a{
-display:block;
-width:158.62px;
-font-weight:bold;
-color:#FFFFFF;
-background-color:#bebebe;
-text-align:center;
-padding:6px;
-text-decoration:none;
-text-transform:uppercase; 
-font-size: 25px;
-font-weight: bold;
-display:true
-	}
-.yangshi1 a:hover {
-	background-color:#000000;
-	}
-	.yangshi1 a:active 
-{
-background-color:#cc0000;
-}
 div.byside{width:200px;height:1024px;background:#7190e0;padding:5px;float:left;}
 div.easyui-panel{margin-top: 0px;}
 
@@ -80,15 +59,7 @@ div.easyui-panel{margin-top: 0px;}
 </style>
 
 
-<li class="yangshi"><a href="#threejs">three.js</a>
-    <ul id="menu1" style="list-style-type:none;margin:0;padding:0;>
-      <li class="yangshi1"><a href="#xcdv">Item 3-1</a></li>
-      <li class="yangshi1"><a href="#xcv">Item 3-2</a></li>
-      <li class="yangshi1"><a href="#drf">Item 3-3</a></li>
-      <li class="yangshi1"><a href="#xcv">Item 3-4</a></li>
-      <li class="yangshi1"><a href="#cvb">Item 3-5</a></li>
-    </ul>
-</li>
+<li class="yangshi"><a href="#threejs">three.js</a></li>
 <li class="yangshi"><a href="#HTML/CSS">HTML/CSS</a></li>
 <li class="yangshi"><a href="#server side">server side</a></li>
 <li class="yangshi"><a href="#news">News</a></li>
@@ -97,6 +68,7 @@ div.easyui-panel{margin-top: 0px;}
 
 
 </ul>
+-->
 </div>
 
 

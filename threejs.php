@@ -30,6 +30,12 @@
 <li class="yangshi"><a href="#contact">Contact</a></li>
 <li class="yangshi"><a href="#about">About</a></li>
 </ul>
+<nav>
+<a href="/html/">HTML</a> |
+<a href="/css/">CSS</a> |
+<a href="/js/">JavaScript</a> |
+<a href="/jquery/">jQuery</a>
+</nav>
 </div>
 
 <div id="wrapper2" style="margin:0 auto;position:relative;width:1024px;height:auto;background:#F00;">

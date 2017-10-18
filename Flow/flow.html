@@ -9,14 +9,14 @@
 <!--<link rel="stylesheet" type="text/css" href="codebase/GooFlow2.css"/>-->
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
-	
+
 <link rel="stylesheet" type="text/css" href="my.css">
 
 </head>
 <body>
-<div id="demo2" style="margin:10px"></div>
 <input id="submit" type="button" value='导出结果' onclick="Export()"/>
 <textarea id="result" row="6"></textarea>
+<div id="demo2" style="margin:20px"></div>
 </body>
 <script type="text/javascript" src="my.js"></script>
 <script type="text/javascript">
@@ -42,14 +42,14 @@ var jsondata={"title":"业务审批流程",
 var property={
 	headLabel:true,
 	initLabelText:"审批流程",
-	width:500,
-	height:300,
+	width:10000,
+	height:5000,
 	toolBtns:["start round","end round","task","fork","join"],
 	haveHead:true,
 	headBtns:["save","undo","redo","reload"],//如果haveHead=true，则定义HEAD区的按钮
 	haveTool:true,
 	haveGroup:true,
-	useOperStack:true 
+	useOperStack:true
 };
 var remark={
 	cursor:"选择指针",

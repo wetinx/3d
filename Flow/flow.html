@@ -6,21 +6,49 @@
 <!--[if lt IE 9]>
 <?import namespace="v" implementation="#default#VML" ?>
 <![endif]-->
-<!--<link rel="stylesheet" type="text/css" href="codebase/GooFlow2.css"/>-->
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-
+<!--<link rel="stylesheet" type="text/css" href="codebase/GooFlow2.css"/>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>  -->
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="my.css">
 
 </head>
 <body>
+  <ul id="myTab" class="nav nav-tabs">
+	<li class="active">
+		<a href="#home" data-toggle="tab">
+			 思维导图
+		</a>
+	</li>
+	<li><a href="#code" data-toggle="tab">代码</a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade in active" id="home">
+
+    <div id="demo2" style="margin:20px"></div>
+  </div>
+
+  <div class="tab-pane fade" id="code">
+
 <input id="submit" type="button" value='导出结果' onclick="Export()"/>
-<textarea id="result" row="6"></textarea>
-<div id="demo2" style="margin:20px"></div>
+<textarea id="result" row="6" style="width=200px; height=300px"></textarea>
+  </div>
+
+</div>
+
+
+
+
+
+
+
 </body>
 <script type="text/javascript" src="my.js"></script>
 <script type="text/javascript">
-var jsondata={"title":"业务审批流程",
+var jsondata={"title":"思维导图",
 "nodes":
 {"demo_node_1":{"name":"登记","left":20,"top":59,"type":"start round","width":24,"height":24},
  "demo_node_3":{"name":"分管领导批","left":335,"top":57,"type":"task","width":109,"height":40},

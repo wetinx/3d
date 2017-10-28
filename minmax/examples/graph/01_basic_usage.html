@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <title>Graph | Basic usage</title>
+
+  <script type="text/javascript" src="../../dist/vis.js"></script>
+
+  <style type="text/css">
+    #mygraph {
+      width: 600px;
+      height: 800px;
+      border: 1px solid lightgray;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="mygraph"></div>
+<p>abcasfdoaskfns</p>
+
+<script type="text/javascript">
+  // create an array with nodes
+  var nodes = [
+
+    {id: 2, label: 'Node 2'},
+
+    {id: 5, label: 'Node 5'}
+  ];
+
+  // create an array with edges
+  var edges = [
+
+    {from: 2, to: 5}
+  ];
+
+
+  // create a graph
+  var container = document.getElementById('mygraph');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {};
+  var graph = new vis.Graph(container, data, options);
+</script>
+
+</body>
+</html>

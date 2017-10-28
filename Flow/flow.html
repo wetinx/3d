@@ -13,9 +13,23 @@
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="my.css">
-
+<script type="text/javascript" src="../js/vis.js"></script>
+<!--
+<style type="text/css">
+  #demo2 {
+    width: auto;
+    height: auto;
+    border: 10px solid lightgray;
+  }
+</style>
+-->
 </head>
+
+
 <body>
+
+
+
   <ul id="myTab" class="nav nav-tabs">
 	<li class="active">
 		<a href="#home" data-toggle="tab">
@@ -28,13 +42,54 @@
 <div id="myTabContent" class="tab-content">
 	<div class="tab-pane fade in active" id="home">
 
-    <div id="demo2" style="margin:20px"></div>
+    <div id="demo2"></div>
+    <script type="text/javascript">
+    var container = document.getElementById('demo2');
+
+    var options = {};
+    var graph = new vis.Graph(container, data, options);
+    </script>
+
+<!--    <script type="text/javascript">
+      // create an array with nodes
+      var nodes = [
+        {id: 1, label: 'Node 1'},
+        {id: 2, label: 'Node 2'},
+        {id: 3, label: 'Node 3'},
+        {id: 4, label: 'Node 4'},
+        {id: 5, label: 'Node 5'}
+      ];
+
+      // create an array with edges
+      var edges = [
+        {from: 1, to: 2},
+        {from: 1, to: 3},
+        {from: 2, to: 4},
+        {from: 2, to: 5}
+      ];
+
+
+      // create a graph
+      var container = document.getElementById('demo2');
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {};
+      var graph = new vis.Graph(container, data, options);
+    </script>
+
+
+
+
+    <div id="demo200" style="margin:20px"></div>
+  -->
   </div>
 
   <div class="tab-pane fade" id="code">
 
-<input id="submit" type="button" value='导出结果' onclick="Export()"/>
-<textarea id="result" row="6" style="width=200px; height=300px"></textarea>
+<input id="submit" type="button" style="margin:10px" value='导出结果' onclick="Export()"/> <br>
+<textarea id="result"  style="float:top;width:600px;height:800px;overflow:scroll;resize:none;" ></textarea>
   </div>
 
 </div>
@@ -50,14 +105,14 @@
 <script type="text/javascript">
 var jsondata={"title":"思维导图",
 "nodes":
-{"demo_node_1":{"name":"登记","left":20,"top":59,"type":"start round","width":24,"height":24},
+{"demo_node_1":{"name":"登记","left":20,"top":59,"type":"start round","width":100,"height":48},
  "demo_node_3":{"name":"分管领导批","left":335,"top":57,"type":"task","width":109,"height":40},
  "demo_node_6":{"name":"分件","left":73,"top":60,"type":"fork","width":100,"height":24},
  "demo_node_8":{"name":"XX科审批","left":172,"top":95,"type":"task","width":100,"height":24},
  "demo_node_9":{"name":"XX科审批","left":171,"top":25,"type":"task","width":100,"height":24},
  "demo_node_20":{"name":"局领导审批","left":333,"top":184,"type":"task","width":111,"height":49},
  "demo_node_23":{"name":"打证发件","left":172,"top":198,"type":"task","width":100,"height":24},
- "demo_node_25":{"name":"归档","left":17,"top":198,"type":"end round","width":24,"height":24}},
+ "demo_node_25":{"name":"归档","left":17,"top":198,"type":"end round","width":124,"height":124}},
 "lines":
 {"demo_line_7":{"type":"sl","from":"demo_node_1","to":"demo_node_6","name":"","alt":true},
  "demo_line_10":{"type":"lr","M":121,"from":"demo_node_6","to":"demo_node_8","name":""},
@@ -70,8 +125,8 @@ var jsondata={"title":"思维导图",
 var property={
 	headLabel:true,
 	initLabelText:"审批流程",
-	width:10000,
-	height:5000,
+	width:600,
+	height:800,
 	toolBtns:["start round","end round","task","fork","join"],
 	haveHead:true,
 	headBtns:["save","undo","redo","reload"],//如果haveHead=true，则定义HEAD区的按钮

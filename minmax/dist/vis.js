@@ -44,14 +44,14 @@ else {
   }
 }
 
-var mousetrap;
+var trap;
 if (typeof window !== 'undefined') {
-  // load mousetrap.js only when running in a browser (where window is available)
-  mousetrap = window['mousetrap'] || require('mousetrap');
+  // load trap.js only when running in a browser (where window is available)
+  trap = window['trap'] || require('trap');
 }
 else {
-  mousetrap = function () {
-    throw Error('mouseTrap is only available in a browser, not in node.js.');
+  trap = function () {
+    throw Error('Trap is only available in a browser, not in node.js.');
   }
 }
 
@@ -644,7 +644,7 @@ util.getAbsoluteTop = function getAbsoluteTop (elem) {
 };
 
 /**
- * Get the absolute, vertical mouse position from an event.
+ * Get the absolute, vertical  position from an event.
  * @param {Event} event
  * @return {Number} pageY
  */
@@ -670,7 +670,7 @@ util.getPageY = function getPageY (event) {
 };
 
 /**
- * Get the absolute, horizontal mouse position from an event.
+ * Get the absolute, horizontal  position from an event.
  * @param {Event} event
  * @return {Number} pageX
  */
@@ -780,8 +780,8 @@ util.addEventListener = function addEventListener(element, action, listener, use
     if (useCapture === undefined)
       useCapture = false;
 
-    if (action === "mousewheel" && navigator.userAgent.indexOf("Firefox") >= 0) {
-      action = "DOMMouseScroll";  // For Firefox
+    if (action === "wheel" && navigator.userAgent.indexOf("Firefox") >= 0) {
+      action = "DOMScroll";  // For Firefox
     }
 
     element.addEventListener(action, listener, useCapture);
@@ -793,7 +793,7 @@ util.addEventListener = function addEventListener(element, action, listener, use
 /**
  * Remove an event listener from an element
  * @param {Element}     element         An html dom element
- * @param {string}      action          The name of the event, for example "mousedown"
+ * @param {string}      action          The name of the event, for example "down"
  * @param {function}    listener        The listener function
  * @param {boolean}     [useCapture]
  */
@@ -803,8 +803,8 @@ util.removeEventListener = function removeEventListener(element, action, listene
     if (useCapture === undefined)
       useCapture = false;
 
-    if (action === "mousewheel" && navigator.userAgent.indexOf("Firefox") >= 0) {
-      action = "DOMMouseScroll";  // For Firefox
+    if (action === "wheel" && navigator.userAgent.indexOf("Firefox") >= 0) {
+      action = "DOMScroll";  // For Firefox
     }
 
     element.removeEventListener(action, listener, useCapture);
@@ -844,7 +844,7 @@ util.getTarget = function getTarget(event) {
 };
 
 /**
- * Fake a hammer.js gesture. Event can be a ScrollEvent or MouseMoveEvent
+ * Fake a hammer.js gesture. Event can be a ScrollEvent or MoveEvent
  * @param {Element} element
  * @param {Event} event
  */
@@ -3070,7 +3070,7 @@ Stack.prototype.collision = function collision (a, b, margin) {
 /**
  * @constructor Range
  * A Range controls a numeric range with a start and end value.
- * The Range adjusts the range based on mouse events or programmatic changes,
+ * The Range adjusts the range based on  events or programmatic changes,
  * and triggers events when the range is changing or has been changed.
  * @param {Object} [options]   See description at Range.setOptions
  * @extends Controller
@@ -3119,7 +3119,7 @@ function validateDirection (direction) {
 }
 
 /**
- * Add listeners for mouse and touch events to the component
+ * Add listeners for  and touch events to the component
  * @param {Controller} controller
  * @param {Component} component  Should be a rootpanel
  * @param {String} event        Available events: 'move', 'zoom'
@@ -3150,12 +3150,12 @@ Range.prototype.subscribe = function (controller, component, event, direction) {
     });
   }
   else if (event == 'zoom') {
-    // mouse wheel
-    function mousewheel (event) {
-      me._onMouseWheel(event, component, direction);
+    //  wheel
+    function wheel (event) {
+      me._onWheel(event, component, direction);
     }
-    controller.on('mousewheel', mousewheel);
-    controller.on('DOMMouseScroll', mousewheel); // For FF
+    controller.on('wheel', wheel);
+    controller.on('DOMScroll', wheel); // For FF
 
     // pinch
     controller.on('touch', function (event) {
@@ -3423,14 +3423,14 @@ Range.prototype._onDragEnd = function (event, component) {
 };
 
 /**
- * Event handler for mouse wheel event, used to zoom
- * Code from http://adomas.org/javascript-mouse-wheel/
+ * Event handler for  wheel event, used to zoom
+ * Code from http://adomas.org/javascript--wheel/
  * @param {Event} event
  * @param {Component} component
  * @param {String} direction    'horizontal' or 'vertical'
  * @private
  */
-Range.prototype._onMouseWheel = function(event, component, direction) {
+Range.prototype._onWheel = function(event, component, direction) {
   validateDirection(direction);
 
   // TODO: reckon with option zoomable
@@ -3469,7 +3469,7 @@ Range.prototype._onMouseWheel = function(event, component, direction) {
     this.zoom(scale, pointerDate);
   }
 
-  // Prevent default actions caused by mouse wheel
+  // Prevent default actions caused by  wheel
   // (else the page and timeline both zoom and scroll)
   event.preventDefault();
 };
@@ -4110,7 +4110,7 @@ function RootPanel(container, options) {
   var events = [
     'touch', 'pinch', 'tap', 'doubletap', 'hold',
     'dragstart', 'drag', 'dragend',
-    'mousewheel', 'DOMMouseScroll' // DOMMouseScroll is for Firefox
+    'wheel', 'DOMScroll' // DOMScroll is for Firefox
   ];
   this.listeners = {};
   events.forEach(function (event) {
@@ -7879,7 +7879,7 @@ function Timeline (container, items, options) {
   // single select (or unselect) when tapping an item
   this.controller.on('tap',  this._onSelectItem.bind(this));
 
-  // multi select when holding mouse/touch, or on ctrl+click
+  // multi select when holding /touch, or on ctrl+click
   this.controller.on('hold', this._onMultiSelectItem.bind(this));
 
   // add item on doubletap
@@ -15650,7 +15650,7 @@ var NavigationMixin = {
     if (wrapper != null) {
       this.containerElement.removeChild(wrapper);
     }
-    document.onmouseup = null;
+    document.onup = null;
   },
 
   /**
@@ -15680,10 +15680,10 @@ var NavigationMixin = {
       this.navigationDivs[navigationDivs[i]].id = "graph-navigation_" + navigationDivs[i];
       this.navigationDivs[navigationDivs[i]].className = "graph-navigation " + navigationDivs[i];
       this.navigationDivs['wrapper'].appendChild(this.navigationDivs[navigationDivs[i]]);
-      this.navigationDivs[navigationDivs[i]].onmousedown = this[navigationDivActions[i]].bind(this);
+      this.navigationDivs[navigationDivs[i]].ondown = this[navigationDivActions[i]].bind(this);
     }
 
-    document.onmouseup = this._stopMovement.bind(this);
+    document.onup = this._stopMovement.bind(this);
   },
 
   /**
@@ -16815,9 +16815,9 @@ Graph.prototype._create = function () {
   this.hammer.on('drag',      me._onDrag.bind(me) );
   this.hammer.on('dragend',   me._onDragEnd.bind(me) );
   this.hammer.on('release',   me._onRelease.bind(me) );
-  this.hammer.on('mousewheel',me._onMouseWheel.bind(me) );
-  this.hammer.on('DOMMouseScroll',me._onMouseWheel.bind(me) ); // for FF
-  this.hammer.on('mousemove', me._onMouseMoveTitle.bind(me) );
+  this.hammer.on('wheel',me._onWheel.bind(me) );
+  this.hammer.on('DOMScroll',me._onWheel.bind(me) ); // for FF
+  this.hammer.on('move', me._onMoveTitle.bind(me) );
 
   // add the frame to the container element
   this.containerElement.appendChild(this.frame);
@@ -16831,36 +16831,36 @@ Graph.prototype._create = function () {
  */
 Graph.prototype._createKeyBinds = function() {
   var me = this;
-  this.mousetrap = mousetrap;
+  this.trap = trap;
 
-  this.mousetrap.reset();
+  this.trap.reset();
 
   if (this.constants.keyboard.enabled == true) {
-    this.mousetrap.bind("up",   this._moveUp.bind(me)   , "keydown");
-    this.mousetrap.bind("up",   this._yStopMoving.bind(me), "keyup");
-    this.mousetrap.bind("down", this._moveDown.bind(me) , "keydown");
-    this.mousetrap.bind("down", this._yStopMoving.bind(me), "keyup");
-    this.mousetrap.bind("left", this._moveLeft.bind(me) , "keydown");
-    this.mousetrap.bind("left", this._xStopMoving.bind(me), "keyup");
-    this.mousetrap.bind("right",this._moveRight.bind(me), "keydown");
-    this.mousetrap.bind("right",this._xStopMoving.bind(me), "keyup");
-    this.mousetrap.bind("=",    this._zoomIn.bind(me),    "keydown");
-    this.mousetrap.bind("=",    this._stopZoom.bind(me),    "keyup");
-    this.mousetrap.bind("-",    this._zoomOut.bind(me),   "keydown");
-    this.mousetrap.bind("-",    this._stopZoom.bind(me),    "keyup");
-    this.mousetrap.bind("[",    this._zoomIn.bind(me),    "keydown");
-    this.mousetrap.bind("[",    this._stopZoom.bind(me),    "keyup");
-    this.mousetrap.bind("]",    this._zoomOut.bind(me),   "keydown");
-    this.mousetrap.bind("]",    this._stopZoom.bind(me),    "keyup");
-    this.mousetrap.bind("pageup",this._zoomIn.bind(me),   "keydown");
-    this.mousetrap.bind("pageup",this._stopZoom.bind(me),   "keyup");
-    this.mousetrap.bind("pagedown",this._zoomOut.bind(me),"keydown");
-    this.mousetrap.bind("pagedown",this._stopZoom.bind(me), "keyup");
+    this.trap.bind("up",   this._moveUp.bind(me)   , "keydown");
+    this.trap.bind("up",   this._yStopMoving.bind(me), "keyup");
+    this.trap.bind("down", this._moveDown.bind(me) , "keydown");
+    this.trap.bind("down", this._yStopMoving.bind(me), "keyup");
+    this.trap.bind("left", this._moveLeft.bind(me) , "keydown");
+    this.trap.bind("left", this._xStopMoving.bind(me), "keyup");
+    this.trap.bind("right",this._moveRight.bind(me), "keydown");
+    this.trap.bind("right",this._xStopMoving.bind(me), "keyup");
+    this.trap.bind("=",    this._zoomIn.bind(me),    "keydown");
+    this.trap.bind("=",    this._stopZoom.bind(me),    "keyup");
+    this.trap.bind("-",    this._zoomOut.bind(me),   "keydown");
+    this.trap.bind("-",    this._stopZoom.bind(me),    "keyup");
+    this.trap.bind("[",    this._zoomIn.bind(me),    "keydown");
+    this.trap.bind("[",    this._stopZoom.bind(me),    "keyup");
+    this.trap.bind("]",    this._zoomOut.bind(me),   "keydown");
+    this.trap.bind("]",    this._stopZoom.bind(me),    "keyup");
+    this.trap.bind("pageup",this._zoomIn.bind(me),   "keydown");
+    this.trap.bind("pageup",this._stopZoom.bind(me),   "keyup");
+    this.trap.bind("pagedown",this._zoomOut.bind(me),"keydown");
+    this.trap.bind("pagedown",this._stopZoom.bind(me), "keyup");
   }
 
   if (this.constants.dataManipulation.enabled == true) {
-    this.mousetrap.bind("escape",this._createManipulatorBar.bind(me));
-    this.mousetrap.bind("del",this._deleteSelected.bind(me));
+    this.trap.bind("escape",this._createManipulatorBar.bind(me));
+    this.trap.bind("del",this._deleteSelected.bind(me));
   }
 };
 
@@ -17121,13 +17121,13 @@ Graph.prototype._zoom = function(scale, pointer) {
 
 
 /**
- * Event handler for mouse wheel event, used to zoom the timeline
- * See http://adomas.org/javascript-mouse-wheel/
+ * Event handler for  wheel event, used to zoom the timeline
+ * See http://adomas.org/javascript--wheel/
  *     https://github.com/EightMedia/hammer.js/issues/256
- * @param {MouseEvent}  event
+ * @param {Event}  event
  * @private
  */
-Graph.prototype._onMouseWheel = function(event) {
+Graph.prototype._onWheel = function(event) {
   // retrieve delta
   var delta = 0;
   if (event.wheelDelta) { /* IE/Opera. */
@@ -17159,17 +17159,17 @@ Graph.prototype._onMouseWheel = function(event) {
     this._zoom(scale, pointer);
   }
 
-  // Prevent default actions caused by mouse wheel.
+  // Prevent default actions caused by  wheel.
   event.preventDefault();
 };
 
 
 /**
- * Mouse move handler for checking whether the title moves over a node with a title.
+ *  move handler for checking whether the title moves over a node with a title.
  * @param  {Event} event
  * @private
  */
-Graph.prototype._onMouseMoveTitle = function (event) {
+Graph.prototype._onMoveTitle = function (event) {
   var gesture = util.fakeGesture(this, event);
   var pointer = this._getPointer(gesture.center);
 
@@ -17178,7 +17178,7 @@ Graph.prototype._onMouseMoveTitle = function (event) {
     this._checkHidePopup(pointer);
   }
 
-  // start a timeout that will check if the mouse is positioned above
+  // start a timeout that will check if the  is positioned above
   // an element
   var me = this;
   var checkShow = function() {
@@ -17248,7 +17248,7 @@ Graph.prototype._checkShowPopup = function (pointer) {
         me.popup = new Popup(me.frame, me.constants.tooltip);
       }
 
-      // adjust a small offset such that the mouse cursor is located in the
+      // adjust a small offset such that the  cursor is located in the
       // bottom left location of the popup, and you can easily move over the
       // popup area
       me.popup.setPosition(pointer.x - 3, pointer.y - 3);
@@ -17265,7 +17265,7 @@ Graph.prototype._checkShowPopup = function (pointer) {
 
 
 /**
- * Check if the popup must be hided, which is the case when the mouse is no
+ * Check if the popup must be hided, which is the case when the  is no
  * longer hovering on the object
  * @param {{x:Number, y:Number}} pointer
  * @private
@@ -18214,7 +18214,7 @@ if (typeof window !== 'undefined') {
 }
 
 
-},{"emitter-component":2,"hammerjs":3,"moment":4,"mousetrap":5}],2:[function(require,module,exports){
+},{"emitter-component":2,"hammerjs":3,"moment":4,"trap":5}],2:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -18427,9 +18427,9 @@ Hammer.defaults = {
 Hammer.HAS_POINTEREVENTS = navigator.pointerEnabled || navigator.msPointerEnabled;
 Hammer.HAS_TOUCHEVENTS = ('ontouchstart' in window);
 
-// dont use mouseevents on mobile devices
+// dont use events on mobile devices
 Hammer.MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
-Hammer.NO_MOUSEEVENTS = Hammer.HAS_TOUCHEVENTS && navigator.userAgent.match(Hammer.MOBILE_REGEX);
+Hammer.NO_EVENTS = Hammer.HAS_TOUCHEVENTS && navigator.userAgent.match(Hammer.MOBILE_REGEX);
 
 // eventtypes per touchevent (start, move, end)
 // are filled by Hammer.event.determineEventTypes on setup
@@ -18442,7 +18442,7 @@ Hammer.DIRECTION_UP = 'up';
 Hammer.DIRECTION_RIGHT = 'right';
 
 // pointer type
-Hammer.POINTER_MOUSE = 'mouse';
+Hammer.POINTER_ = '';
 Hammer.POINTER_TOUCH = 'touch';
 Hammer.POINTER_PEN = 'pen';
 
@@ -18604,7 +18604,7 @@ var last_move_event = null;
 
 
 /**
- * when the mouse is hold down, this is true
+ * when the  is hold down, this is true
  * @type {Boolean}
  */
 var enable_detect = false;
@@ -18633,7 +18633,7 @@ Hammer.event = {
 
 
     /**
-     * touch events with mouse fallback
+     * touch events with  fallback
      * @param   {HTMLElement}   element
      * @param   {String}        eventType        like Hammer.EVENT_MOVE
      * @param   {Function}      handler
@@ -18644,16 +18644,16 @@ Hammer.event = {
         this.bindDom(element, Hammer.EVENT_TYPES[eventType], function bindDomOnTouch(ev) {
             var sourceEventType = ev.type.toLowerCase();
 
-            // onmouseup, but when touchend has been fired we do nothing.
-            // this is for touchdevices which also fire a mouseup on touchend
-            if(sourceEventType.match(/mouse/) && touch_triggered) {
+            // onup, but when touchend has been fired we do nothing.
+            // this is for touchdevices which also fire a up on touchend
+            if(sourceEventType.match(//) && touch_triggered) {
                 return;
             }
 
-            // mousebutton must be down or a touch event
+            // button must be down or a touch event
             else if( sourceEventType.match(/touch/) ||   // touch events are always on screen
                 sourceEventType.match(/pointerdown/) || // pointerevents touch
-                (sourceEventType.match(/mouse/) && ev.which === 1)   // mouse is pressed
+                (sourceEventType.match(//) && ev.which === 1)   //  is pressed
             ){
                 enable_detect = true;
             }
@@ -18668,7 +18668,7 @@ Hammer.event = {
             var count_touches = 0;
 
             // when touch has been triggered in this detection session
-            // and we are now handling a mouse event, we stop that to prevent conflicts
+            // and we are now handling a  event, we stop that to prevent conflicts
             if(enable_detect) {
                 // update pointerevent
                 if(Hammer.HAS_POINTEREVENTS && eventType != Hammer.EVENT_END) {
@@ -18678,7 +18678,7 @@ Hammer.event = {
                 else if(sourceEventType.match(/touch/)) {
                     count_touches = ev.touches.length;
                 }
-                // mouse
+                // 
                 else if(!touch_triggered) {
                     count_touches = sourceEventType.match(/up/) ? 0 : 1;
                 }
@@ -18737,8 +18737,8 @@ Hammer.event = {
         if(Hammer.HAS_POINTEREVENTS) {
             types = Hammer.PointerEvent.getEvents();
         }
-        // on Android, iOS, blackberry, windows mobile we dont want any mouseevents
-        else if(Hammer.NO_MOUSEEVENTS) {
+        // on Android, iOS, blackberry, windows mobile we dont want any events
+        else if(Hammer.NO_EVENTS) {
             types = [
                 'touchstart',
                 'touchmove',
@@ -18748,9 +18748,9 @@ Hammer.event = {
         // like chrome on windows8 touch laptop
         else {
             types = [
-                'touchstart mousedown',
-                'touchmove mousemove',
-                'touchend touchcancel mouseup'];
+                'touchstart down',
+                'touchmove move',
+                'touchend touchcancel up'];
         }
 
         Hammer.EVENT_TYPES[Hammer.EVENT_START]  = types[0];
@@ -18773,7 +18773,7 @@ Hammer.event = {
         else if(ev.touches) {
             return ev.touches;
         }
-        // make fake touchlist from mouse position
+        // make fake touchlist from  position
         else {
             return [{
                 identifier: 1,
@@ -18796,8 +18796,8 @@ Hammer.event = {
 
         // find out pointerType
         var pointerType = Hammer.POINTER_TOUCH;
-        if(ev.type.match(/mouse/) || Hammer.PointerEvent.matchType(Hammer.POINTER_MOUSE, ev)) {
-            pointerType = Hammer.POINTER_MOUSE;
+        if(ev.type.match(//) || Hammer.PointerEvent.matchType(Hammer.POINTER_, ev)) {
+            pointerType = Hammer.POINTER_;
         }
 
         return {
@@ -18883,7 +18883,7 @@ Hammer.PointerEvent = {
 
     /**
      * check if ev matches pointertype
-     * @param   {String}        pointerType     Hammer.POINTER_MOUSE
+     * @param   {String}        pointerType     Hammer.POINTER_
      * @param   {PointerEvent}  ev
      */
     matchType: function(pointerType, ev) {
@@ -18892,7 +18892,7 @@ Hammer.PointerEvent = {
         }
 
         var types = {};
-        types[Hammer.POINTER_MOUSE] = (ev.pointerType == ev.MSPOINTER_TYPE_MOUSE || ev.pointerType == Hammer.POINTER_MOUSE);
+        types[Hammer.POINTER_] = (ev.pointerType == ev.MSPOINTER_TYPE_ || ev.pointerType == Hammer.POINTER_);
         types[Hammer.POINTER_TOUCH] = (ev.pointerType == ev.MSPOINTER_TYPE_TOUCH || ev.pointerType == Hammer.POINTER_TOUCH);
         types[Hammer.POINTER_PEN] = (ev.pointerType == ev.MSPOINTER_TYPE_PEN || ev.pointerType == Hammer.POINTER_PEN);
         return types[pointerType];
@@ -19348,8 +19348,8 @@ Hammer.gestures = Hammer.gestures || {};
  *      event data containing the following properties:
  *          timeStamp   {Number}        time the event occurred
  *          target      {HTMLElement}   target element
- *          touches     {Array}         touches (fingers, pointers, mouse) on the screen
- *          pointerType {String}        kind of pointer that was used. matches Hammer.POINTER_MOUSE|TOUCH
+ *          touches     {Array}         touches (fingers, pointers, ) on the screen
+ *          pointerType {String}        kind of pointer that was used. matches Hammer.POINTER_|TOUCH
  *          center      {Object}        center position of the touches. contains pageX and pageY
  *          deltaTime   {Number}        the total time of the touches in the screen
  *          deltaX      {Number}        the delta on x axis we haved moved
@@ -19362,7 +19362,7 @@ Hammer.gestures = Hammer.gestures || {};
  *          scale       {Number}        scaling of the touches, needs 2 touches
  *          rotation    {Number}        rotation of the touches, needs 2 touches *
  *          eventType   {String}        matches Hammer.EVENT_START|MOVE|END
- *          srcEvent    {Object}        the source event, like TouchStart or MouseDown *
+ *          srcEvent    {Object}        the source event, like TouchStart or Down *
  *          startEvent  {Object}        contains the same properties as above,
  *                                      but from the first touch. this is used to calculate
  *                                      distances, deltaTime, scaling etc
@@ -19751,11 +19751,11 @@ Hammer.gestures.Touch = {
         // on the page
         prevent_default: false,
 
-        // disable mouse events, so only touch (or pen!) input triggers events
-        prevent_mouseevents: false
+        // disable  events, so only touch (or pen!) input triggers events
+        prevent_events: false
     },
     handler: function touchGesture(ev, inst) {
-        if(inst.options.prevent_mouseevents && ev.pointerType == Hammer.POINTER_MOUSE) {
+        if(inst.options.prevent_events && ev.pointerType == Hammer.POINTER_) {
             ev.stopDetect();
             return;
         }
@@ -22309,7 +22309,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Mousetrap is a simple keyboard shortcut library for Javascript with
+ * trap is a simple keyboard shortcut library for Javascript with
  * no external dependencies
  *
  * @version 1.1.2
@@ -22432,7 +22432,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       _REVERSE_MAP,
 
       /**
-       * a list of all the callbacks setup via Mousetrap.bind()
+       * a list of all the callbacks setup via trap.bind()
        *
        * @type {Object}
        */
@@ -22542,8 +22542,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       var element = e.target || e.srcElement,
           tag_name = element.tagName;
 
-      // if the element has the class "mousetrap" then no need to stop
-      if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
+      // if the element has the class "trap" then no need to stop
+      if ((' ' + element.className + ' ').indexOf(' trap ') > -1) {
           return false;
       }
 
@@ -23017,10 +23017,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   _addEvent(document, 'keydown', _handleKey);
   _addEvent(document, 'keyup', _handleKey);
 
-  var mousetrap = {
+  var trap = {
 
       /**
-       * binds an event to mousetrap
+       * binds an event to trap
        *
        * can be a single key, a combination of keys separated with +,
        * a comma separated list of keys, an array of keys, or
@@ -23041,7 +23041,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       },
 
       /**
-       * unbinds an event to mousetrap
+       * unbinds an event to trap
        *
        * the unbinding sets the callback function of the specified key combo
        * to an empty function and deletes the corresponding key in the
@@ -23091,7 +23091,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       }
   };
 
-module.exports = mousetrap;
+module.exports = trap;
 
 
 },{}]},{},[1])
